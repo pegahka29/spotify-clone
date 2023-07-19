@@ -991,7 +991,8 @@ module.exports = {
             colors: {
                 'green': '#1DB954',
                 'dark': '#121212',
-                'light': '#B3B3B3',
+                'lightest': '#B3B3B3',
+                'light': '#282828',
                 'darkest': '#191414'
             }
         },
