@@ -51,7 +51,34 @@
             <!--main-content-->
             <div class="w-full h-full relative">
                 <!--header-->
-                <div class="w-full sticky top-0 p-2"></div>
+                <div class="w-full sticky top-0 py-4 px-6 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <button class="rounded-full bg-black w-8 h-8 text-white mr-3">
+                            <font-awesome-icon class="text-3xl" :icon="['fas', 'chevron-left']"/>
+                        </button>
+                        <button class="rounded-full bg-black w-8 h-8 text-white">
+                            <font-awesome-icon class="text-3xl" :icon="['fas', 'chevron-right']"/>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <button @click="showDropdown = true" class="bg-light rounded-full py-1 px-2 flex items-center">
+                            <img src="@/assets/my-face.jpg" class="rounded-full h-6 w-6 mr-2"/>
+                            <p class="text-white font-semibold text-xs">Pegah K</p>
+                            <font-awesome-icon class="ml-2 text-white" size="sm"
+                                               :icon="['fas', !showDropdown ? 'caret-down' : 'caret-up']"/>
+                        </button>
+                        <div v-if="showDropdown" class="absolute bg-light mt-1 w-full rounded">
+                            <button @click="showDropdown = false"
+                                    class="w-full py-2 text-lightest hover:text-white border-b border-white opacity-75 hover:opacity-100 text-sm focus:outline-none">
+                                Account
+                            </button>
+                            <button @click="showDropdown = false"
+                                    class="w-full py-2 text-lightest hover:text-white border-b border-light text-sm opacity-75 hover:opacity-100 focus:outline-none">
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!--play-bar-->
@@ -109,7 +136,8 @@ export default {
                     id: 'Lana Del Rey Radio',
                     name: 'Lana Del Rey Radio'
                 }
-            ]
+            ],
+            showDropdown: false
         }
     },
 }
