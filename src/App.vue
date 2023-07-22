@@ -49,7 +49,7 @@
                 </div>
             </div>
             <!--main-content-->
-            <div class="w-full h-full relative">
+            <div class="w-full h-full relative overflow-y-scroll">
                 <!--header-->
                 <div class="w-full sticky top-0 py-4 px-6 flex items-center justify-between">
                     <div class="flex items-center">
@@ -61,7 +61,8 @@
                         </button>
                     </div>
                     <div class="relative">
-                        <button @click="showDropdown = true" class="bg-light rounded-full py-1 px-2 flex items-center">
+                        <button @click="showDropdown = !showDropdown"
+                                class="bg-light rounded-full py-1 px-2 flex items-center">
                             <img src="@/assets/my-face.jpg" class="rounded-full h-6 w-6 mr-2"/>
                             <p class="text-white font-semibold text-xs">Pegah K</p>
                             <font-awesome-icon class="ml-2 text-white" size="sm"
@@ -76,6 +77,40 @@
                                     class="w-full py-2 text-lightest hover:text-white border-b border-light text-sm opacity-75 hover:opacity-100 focus:outline-none">
                                 Logout
                             </button>
+                        </div>
+                    </div>
+                </div>
+                <!--cards-->
+                <div class="px-6 py-3">
+                    <div class="flex items-center justify-between">
+                        <h1 class="text-2xl text-white font-semibold tracking-wider hover:underline cursor-pointer pl-2">
+                            Recently played</h1>
+                        <h2 class="text-xs text-lightest tracking-wider hover:underline uppercase cursor-pointer pl-8 pt-4 mb-3">
+                            See All</h2>
+                    </div>
+                    <div class="w-full flex flex-wrap">
+                        <div v-for="recent in recents" :key="recent.title" class="p-2 w-48">
+                            <div class="bg-light w-full h-auto p-5 rounded-lg shadow-md cursor-pointer">
+                                <img src="@/assets/Spotify-Logo.wine.svg" class="h-auto w-full shadow mb-2">
+                                <h1 class="text-sm text-white font-semibold tracking-wide">{{ recent.title }}</h1>
+                                <h2 class="text-xs text-lightest tracking-wide pb-5">{{ recent.artist }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-3">
+                    <div class="pl-2">
+                        <h1 class="text-2xl text-white font-semibold tracking-wider hover:underline cursor-pointer">Made
+                            for Pegah</h1>
+                        <h2 class="text-sm text-lightest">Get Better recommendation</h2>
+                    </div>
+                    <div class="w-full flex flex-wrap">
+                        <div v-for="custom in custom" :key="custom.title" class="p-2 w-48">
+                            <div class="bg-light w-full h-auto p-5 rounded-lg shadow-md cursor-pointer">
+                                <img src="@/assets/Spotify-Logo.wine.svg" class="h-auto w-full shadow mb-2">
+                                <h1 class="text-sm text-white font-semibold tracking-wide">{{ custom.title }}</h1>
+                                <h2 class="text-xs text-lightest tracking-wide pb-5">{{ custom.artist }}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,10 +172,29 @@ export default {
                     name: 'Lana Del Rey Radio'
                 }
             ],
-            showDropdown: false
+            showDropdown: false,
+            recents: [
+                {title: 'Daily Nix 2', artist: 'By Spotify'},
+                {title: 'Daily Mix 3', artist: "By Spotify"},
+                {title: "BilLie Eflish Radio", artist: 'BiLlie Eflish'},
+                {title: 'Cold Case Files', artist: 'Podcastone'},
+                {title: 'Life Is Good Radio', artist: 'By Spotify'},
+                {title: "run", artist: 'Stephanie Dietz'}
+            ],
+            custom: [
+                {
+                    title: 'Dafly Mlx4',
+                    artists: "By Spotify"
+                },
+                {
+                    title: 'Dafly Mlx3',
+                    artists: "By Spotify"
+                },
+            ]
         }
-    },
+    }
 }
+
 </script>
 
 <style>
