@@ -51,7 +51,7 @@
             <!--main-content-->
             <div class="w-full h-full relative overflow-y-scroll">
                 <!--header-->
-                <div class="w-full sticky top-0 py-4 px-6 flex items-center justify-between">
+                <div class="w-full sticky top-0 py-4 px-6 flex items-center justify-between bg-dark">
                     <div class="flex items-center">
                         <button class="rounded-full bg-black w-8 h-8 text-white mr-3">
                             <font-awesome-icon class="text-3xl" :icon="['fas', 'chevron-left']"/>
@@ -89,7 +89,12 @@
                             See All</h2>
                     </div>
                     <div class="w-full flex flex-wrap">
-                        <div v-for="recent in recents" :key="recent.title" class="p-2 w-48">
+                        <div v-for="recent in recents" :key="recent.title" class="p-2 w-48 relative">
+                            <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                                <div class="bg-green rounded-full h-10 w-10 flex items-center justify-center">
+                                    <font-awesome-icon class="text-2xl text-white" :icon="['fas', 'play']"/>
+                                </div>
+                            </div>
                             <div class="bg-light w-full h-auto p-5 rounded-lg shadow-md cursor-pointer">
                                 <img src="@/assets/Spotify-Logo.wine.svg" class="h-auto w-full shadow mb-2">
                                 <h1 class="text-sm text-white font-semibold tracking-wide">{{ recent.title }}</h1>
@@ -105,7 +110,12 @@
                         <h2 class="text-sm text-lightest">Get Better recommendation</h2>
                     </div>
                     <div class="w-full flex flex-wrap">
-                        <div v-for="custom in custom" :key="custom.title" class="p-2 w-48">
+                        <div v-for="custom in custom" :key="custom.title" class="p-2 w-48 relative">
+                            <div class="absolute w-full h-full flex items-end justify-end p-8 opacity-0 hover:opacity-100">
+                                <div class="bg-green rounded-full h-10 w-10 flex items-center justify-center">
+                                    <font-awesome-icon class="text-2xl text-white" :icon="['fas', 'play']"/>
+                                </div>
+                            </div>
                             <div class="bg-light w-full h-auto p-5 rounded-lg shadow-md cursor-pointer">
                                 <img src="@/assets/Spotify-Logo.wine.svg" class="h-auto w-full shadow mb-2">
                                 <h1 class="text-sm text-white font-semibold tracking-wide">{{ custom.title }}</h1>
@@ -117,7 +127,50 @@
             </div>
         </div>
         <!--play-bar-->
-        <div class="w-full bg-light" style="height: 12vh"></div>
+        <div class="w-full flex items-center justify-between px-3 bg-light border-t border-dark" style="height: 12vh">
+            <div class="flex items-center w-1/4">
+                <div>
+                    <h1 class="tracking-wide text-sm text-white mb-1">Summer in the city - Remastered</h1>
+                    <h2 class="tracking-wide text-xs text-lightest">The Lovin Spooonfull</h2>
+                    <font-awesome-icon class="text-green mx-4 text-xl" :icon="['fas', 'heart']"/>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center w-2/4 items-center">
+                <div class="flex items-center">
+                    <button class="text-lightest text-lg hover:text-white mx-3">
+                        <font-awesome-icon :icon="['fas', 'shuffle']"/>
+                    </button>
+                    <button class="text-lightest text-lg hover:text-white">
+                        <font-awesome-icon :icon="['fas', 'backward']"/>
+
+                    </button>
+                    <button @click="pause = !pause"
+                            class="text-lightest text-lg hover:text-white rounded-full h-8 w-8 border border-lightest flex items-center justify-center mx-3">
+                        <font-awesome-icon :icon="['fas', pause ? 'play': 'pause']"/>
+                    </button>
+                    <button class="text-lightest hover:text-white">
+                        <font-awesome-icon :icon="['fas', 'forward']"/>
+                    </button>
+                    <button class="text-lightest hover:text-white mx-5">
+                        <font-awesome-icon :icon="['fas', 'repeat']"/>
+                    </button>
+                </div>
+                <div class="w-3/4 flex items-center justify-center mt-3">
+                    <p class="text-xs text-lightest mr-1">00:28</p>
+                    <div class="w-full h-1 bg-dark rounded-full flex items-center">
+                        <div class="h-1 rounded-full bg-green" style="width: 18%"></div>
+                        <div class="h-3 w-3 bg-white rounded-full -ml-1 shadow"></div>
+                    </div>
+                    <p class="text-xs text-lightest ml-1">02:40</p>
+                </div>
+            </div>
+            <div class="flex items-center w-1/4 justify-end">
+                <font-awesome-icon class=" text-lightest mx-3 hover:text-white" :icon="['fas', 'list']"/>
+                <font-awesome-icon class="text-xl text-lightest mx-3 hover:text-white" :icon="['fas', 'display']"/>
+                <font-awesome-icon class="text-xl text-lightest hover:text-white" :icon="['fas', 'volume-high']"/>
+                <div class="w-20 ml-1 bg-lightest rounded-full h-1"></div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -190,12 +243,9 @@ export default {
                     title: 'Dafly Mlx3',
                     artists: "By Spotify"
                 },
-            ]
+            ],
+            pause: true
         }
     }
 }
-
 </script>
-
-<style>
-</style>
