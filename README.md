@@ -1,4 +1,4 @@
-# spotify-clone
+# a simple clone from spotify with Vue and Tailwindcss
 
 ## Project setup
 ```
